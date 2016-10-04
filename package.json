@@ -1,11 +1,12 @@
 {
   "name": "graphology-utils",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Miscellaneous utils for graphology.",
   "main": "index.js",
   "files": [
     "index.js",
-    "is-graph.js"
+    "is-graph.js",
+    "is-graph-constructor.js"
   ],
   "scripts": {
     "lint": "eslint *.js",
