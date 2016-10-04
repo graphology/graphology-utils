@@ -1,6 +1,6 @@
 {
   "name": "graphology-utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Miscellaneous utils for graphology.",
   "main": "index.js",
   "files": [
@@ -31,7 +31,6 @@
   "homepage": "https://github.com/graphology/graphology-utils#readme",
   "devDependencies": {
     "@yomguithereal/eslint-config": "^3.0.0",
-    "chai": "^3.5.0",
     "eslint": "^3.5.0",
     "graphology": "0.1.0",
     "mocha": "^3.0.2"
