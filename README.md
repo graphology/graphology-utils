@@ -31,3 +31,23 @@ isGraph(45);
 isGraph({hello: 'world'});
 >>> false
 ```
+
+### #.isGraphConstructor
+
+Function returning whether the given value is a `graphology` constructor.
+
+```js
+import Graph from 'graphology';
+import {isGraphConstructor} from 'graphology-utils';
+// Alternatively, if you want to only load the relevant code:
+import isGraphConstructor from 'graphology-utils/is-graph-constructor';
+
+isGraphConstructor(Graph);
+>>> true
+
+isGraphConstructor(45);
+>>> false
+
+isGraphConstructor(new Graph());
+>>> false
+```
