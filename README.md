@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/graphology/graphology-utils.svg)](https://travis-ci.org/graphology/graphology-utils)
+
 # Graphology Utils
 
 Miscellaneous utils to be used with [`graphology`](https://graphology.github.io).
