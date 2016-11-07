@@ -10,6 +10,9 @@ npm install graphology-utils
 
 ## Usage
 
+* [#.isGraph](#isgraph)
+* [#.isGraphConstructor](#isgraphconstructor)
+
 ### #.isGraph
 
 Function returning whether the given value is a `graphology` implementation's instance.
