@@ -1,6 +1,6 @@
 /**
- * Graphology Centrality
- * ======================
+ * Graphology Utils
+ * =================
  *
  * Library endpoint.
  */
