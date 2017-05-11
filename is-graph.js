@@ -14,7 +14,7 @@
  */
 module.exports = function isGraph(value) {
   return (
-    !!value &&
+    value !== null &&
     typeof value === 'object' &&
     typeof value.addUndirectedEdgeWithKey === 'function' &&
     typeof value.dropNodes === 'function' &&

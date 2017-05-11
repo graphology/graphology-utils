@@ -14,7 +14,7 @@
  */
 module.exports = function isGraphConstructor(value) {
   return (
-    !!value &&
+    value !== null &&
     typeof value === 'function' &&
     typeof value.prototype === 'object' &&
     typeof value.prototype.addUndirectedEdgeWithKey === 'function' &&
