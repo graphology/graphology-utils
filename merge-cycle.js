@@ -1,5 +1,5 @@
 /**
- * Graphology mergeCyle
+ * Graphology mergeCycle
  * =====================
  *
  * Function merging the given cycle to the graph.

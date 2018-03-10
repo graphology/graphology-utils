@@ -68,6 +68,28 @@ isGraphConstructor(new Graph());
 
 * **value** *any*: value to test.
 
+### #.mergeCycle
+
+Function adding a star to the given graph.
+
+```js
+import Graph from 'graphology';
+import {mergeCycle} from 'graphology-utils';
+// Alternatively, if you want to only load the relevant code:
+import mergeCycle from 'graphology-utils/merge-cycle';
+
+const graph = new Graph();
+
+mergeCycle(graph, [1, 2, 3, 4, 5]);
+graph.edges().map(e => graph.extremities(e));
+>>> [[1, 2], [2, 3], [3, 4], [4, 5], [5, 1]]
+```
+
+*Arguments*
+
+* **graph** *Graph*: target graph.
+* **cycle** *array*: array of nodes representing the cycle to add.
+
 ### #.mergePath
 
 Function adding a path to the given graph.

@@ -6,6 +6,7 @@ var assert = require('assert'),
     Graph = require('graphology'),
     isGraph = require('./is-graph.js'),
     isGraphConstructor = require('./is-graph-constructor.js'),
+    mergeClique = require('./merge-clique.js'),
     mergeCycle = require('./merge-cycle.js'),
     mergePath = require('./merge-path.js'),
     mergeStar = require('./merge-star.js');
@@ -75,6 +76,35 @@ describe('graphology-utils', function() {
       nonGraphsConstructors.forEach(function(value) {
         assert.strictEqual(isGraphConstructor(value), false);
       });
+    });
+  });
+
+  describe('mergeClique', function() {
+
+    it('should correctly add the given clique to the graph.', function() {
+      var graph = new Graph();
+
+      mergeClique(graph, [1, 2, 3, 4, 5]);
+
+      assert.strictEqual(graph.order, 5);
+      assert.strictEqual(graph.size, 10);
+
+      var adj = graph.edges().map(function(edge) {
+        return graph.extremities(edge);
+      });
+
+      assert.deepEqual(adj, [
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [1, 5],
+        [2, 3],
+        [2, 4],
+        [2, 5],
+        [3, 4],
+        [3, 5],
+        [4, 5]
+      ]);
     });
   });
 
