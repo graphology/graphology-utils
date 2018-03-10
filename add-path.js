@@ -17,7 +17,7 @@ module.exports = function addPath(graph, nodes) {
 
   var previousNode, node, i, l;
 
-  graph.addNode(nodes[0]);
+  graph.mergeNode(nodes[0]);
 
   for (i = 1, l = nodes.length; i < l; i++) {
     previousNode = nodes[i - 1];

@@ -19,7 +19,7 @@ module.exports = function addStar(graph, nodes) {
 
   var center = nodes[0];
 
-  graph.addNode(center);
+  graph.mergeNode(center);
 
   for (i = 1, l = nodes.length; i < l; i++) {
     node = nodes[i];
