@@ -1,10 +1,12 @@
 {
   "name": "graphology-utils",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Miscellaneous utils for graphology.",
   "main": "index.js",
   "files": [
     "index.js",
+    "add-path.js",
+    "add-star.js",
     "is-graph.js",
     "is-graph-constructor.js"
   ],
