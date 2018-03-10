@@ -6,7 +6,8 @@ var assert = require('assert'),
     Graph = require('graphology'),
     isGraph = require('./is-graph.js'),
     isGraphConstructor = require('./is-graph-constructor.js'),
-    addPath = require('./add-path.js');
+    addPath = require('./add-path.js'),
+    addStar = require('./add-star.js');
 
 var UndirectedGraph = Graph.UndirectedGraph;
 
@@ -95,6 +96,29 @@ describe('graphology-utils', function() {
         [2, 3],
         [3, 4],
         [4, 5]
+      ]);
+    });
+  });
+
+  describe('addStar', function() {
+
+    it('should correctly add the given star to the graph.', function() {
+      var graph = new Graph();
+
+      addStar(graph, [1, 2, 3, 4, 5]);
+
+      assert.strictEqual(graph.order, 5);
+      assert.strictEqual(graph.size, 4);
+
+      var adj = graph.edges().map(function(edge) {
+        return graph.extremities(edge);
+      });
+
+      assert.deepEqual(adj, [
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [1, 5]
       ]);
     });
   });
