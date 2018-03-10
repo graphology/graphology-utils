@@ -6,6 +6,7 @@ var assert = require('assert'),
     Graph = require('graphology'),
     isGraph = require('./is-graph.js'),
     isGraphConstructor = require('./is-graph-constructor.js'),
+    mergeCycle = require('./merge-cycle.js'),
     mergePath = require('./merge-path.js'),
     mergeStar = require('./merge-star.js');
 
@@ -74,6 +75,30 @@ describe('graphology-utils', function() {
       nonGraphsConstructors.forEach(function(value) {
         assert.strictEqual(isGraphConstructor(value), false);
       });
+    });
+  });
+
+  describe('mergeCycle', function() {
+
+    it('should correctly add the given path to the graph.', function() {
+      var graph = new Graph();
+
+      mergeCycle(graph, [1, 2, 3, 4, 5]);
+
+      assert.strictEqual(graph.order, 5);
+      assert.strictEqual(graph.size, 5);
+
+      var adj = graph.edges().map(function(edge) {
+        return graph.extremities(edge);
+      });
+
+      assert.deepEqual(adj, [
+        [1, 2],
+        [2, 3],
+        [3, 4],
+        [4, 5],
+        [5, 1]
+      ]);
     });
   });
 

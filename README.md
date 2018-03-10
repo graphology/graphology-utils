@@ -12,54 +12,11 @@ npm install graphology-utils
 
 ## Usage
 
-* [#.addPath](#addpath)
-* [#.addStar](#addstar)
 * [#.isGraph](#isgraph)
 * [#.isGraphConstructor](#isgraphconstructor)
-
-### #.addPath
-
-Function adding a path to the given graph.
-
-```js
-import Graph from 'graphology';
-import {addPath} from 'graphology-utils';
-// Alternatively, if you want to only load the relevant code:
-import addPath from 'graphology-utils/add-path';
-
-const graph = new Graph();
-
-addPath(graph, [1, 2, 3, 4, 5]);
-graph.edges().map(e => graph.extremities(e));
->>> [[1, 2], [2, 3], [3, 4], [4, 5]]
-```
-
-*Arguments*
-
-* **graph** *Graph*: target graph.
-* **path** *array*: array of nodes representing the path to add.
-
-### #.addStar
-
-Function adding a star to the given graph.
-
-```js
-import Graph from 'graphology';
-import {addStar} from 'graphology-utils';
-// Alternatively, if you want to only load the relevant code:
-import addStar from 'graphology-utils/add-star';
-
-const graph = new Graph();
-
-addStar(graph, [1, 2, 3, 4, 5]);
-graph.edges().map(e => graph.extremities(e));
->>> [[1, 2], [1, 3], [1, 4], [1, 5]]
-```
-
-*Arguments*
-
-* **graph** *Graph*: target graph.
-* **star** *array*: array of nodes representing the star to add.
+* [#.mergeCycle](#mergecycle)
+* [#.mergePath](#mergepath)
+* [#.mergeStar](#mergestar)
 
 ### #.isGraph
 
@@ -110,3 +67,48 @@ isGraphConstructor(new Graph());
 *Arguments*
 
 * **value** *any*: value to test.
+
+### #.mergePath
+
+Function adding a path to the given graph.
+
+```js
+import Graph from 'graphology';
+import {mergePath} from 'graphology-utils';
+// Alternatively, if you want to only load the relevant code:
+import mergePath from 'graphology-utils/merge-path';
+
+const graph = new Graph();
+
+mergePath(graph, [1, 2, 3, 4, 5]);
+graph.edges().map(e => graph.extremities(e));
+>>> [[1, 2], [2, 3], [3, 4], [4, 5]]
+```
+
+*Arguments*
+
+* **graph** *Graph*: target graph.
+* **path** *array*: array of nodes representing the path to add.
+
+### #.mergeStar
+
+Function adding a star to the given graph.
+
+```js
+import Graph from 'graphology';
+import {mergeStar} from 'graphology-utils';
+// Alternatively, if you want to only load the relevant code:
+import mergeStar from 'graphology-utils/merge-star';
+
+const graph = new Graph();
+
+mergeStar(graph, [1, 2, 3, 4, 5]);
+graph.edges().map(e => graph.extremities(e));
+>>> [[1, 2], [1, 3], [1, 4], [1, 5]]
+```
+
+*Arguments*
+
+* **graph** *Graph*: target graph.
+* **star** *array*: array of nodes representing the star to add.
+
