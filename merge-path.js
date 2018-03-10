@@ -1,17 +1,17 @@
 /**
- * Graphology addPath
- * ===================
+ * Graphology mergePath
+ * =====================
  *
- * Function adding the given path to the graph.
+ * Function merging the given path to the graph.
  */
 
 /**
- * Adding the given path to the graph.
+ * Merging the given path to the graph.
  *
  * @param  {Graph} graph - Target graph.
- * @param  {array} nodes - Nodes to add.
+ * @param  {array} nodes - Nodes representing the path to merge.
  */
-module.exports = function addPath(graph, nodes) {
+module.exports = function mergePath(graph, nodes) {
   if (nodes.length === 0)
     return;
 

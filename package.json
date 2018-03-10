@@ -5,10 +5,10 @@
   "main": "index.js",
   "files": [
     "index.js",
-    "add-path.js",
-    "add-star.js",
     "is-graph.js",
-    "is-graph-constructor.js"
+    "is-graph-constructor.js",
+    "merge-path.js",
+    "merge-star.js"
   ],
   "scripts": {
     "lint": "eslint **/*.js",

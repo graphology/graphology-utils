@@ -6,8 +6,8 @@ var assert = require('assert'),
     Graph = require('graphology'),
     isGraph = require('./is-graph.js'),
     isGraphConstructor = require('./is-graph-constructor.js'),
-    addPath = require('./add-path.js'),
-    addStar = require('./add-star.js');
+    mergePath = require('./merge-path.js'),
+    mergeStar = require('./merge-star.js');
 
 var UndirectedGraph = Graph.UndirectedGraph;
 
@@ -77,12 +77,12 @@ describe('graphology-utils', function() {
     });
   });
 
-  describe('addPath', function() {
+  describe('mergePath', function() {
 
     it('should correctly add the given path to the graph.', function() {
       var graph = new Graph();
 
-      addPath(graph, [1, 2, 3, 4, 5]);
+      mergePath(graph, [1, 2, 3, 4, 5]);
 
       assert.strictEqual(graph.order, 5);
       assert.strictEqual(graph.size, 4);
@@ -100,12 +100,12 @@ describe('graphology-utils', function() {
     });
   });
 
-  describe('addStar', function() {
+  describe('mergeStar', function() {
 
     it('should correctly add the given star to the graph.', function() {
       var graph = new Graph();
 
-      addStar(graph, [1, 2, 3, 4, 5]);
+      mergeStar(graph, [1, 2, 3, 4, 5]);
 
       assert.strictEqual(graph.order, 5);
       assert.strictEqual(graph.size, 4);
