@@ -18,6 +18,6 @@ module.exports = function isGraphConstructor(value) {
     typeof value === 'function' &&
     typeof value.prototype === 'object' &&
     typeof value.prototype.addUndirectedEdgeWithKey === 'function' &&
-    typeof value.prototype.dropNodes === 'function'
+    typeof value.prototype.dropNode === 'function'
   );
 };
