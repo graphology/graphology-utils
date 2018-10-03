@@ -190,5 +190,16 @@ describe('graphology-utils', function() {
 
       assert.strictEqual(subGraphResult.order, 0);
     });
+    it('should raise an error if some nodes from the list are not in the graph', function() {
+      var graph = new Graph();
+
+      graph.addNode('John');
+      graph.addNode('Martha');
+      graph.addEdge('John', 'Martha');
+
+      assert.throws(function() {
+        subGraph(graph, ['Hubert']);
+      }, /not present/);
+    });
   });
 });
