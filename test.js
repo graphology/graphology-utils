@@ -3,14 +3,14 @@
  * ============================
  */
 var assert = require('assert'),
-  Graph = require('graphology'),
-  isGraph = require('./is-graph.js'),
-  isGraphConstructor = require('./is-graph-constructor.js'),
-  mergeClique = require('./merge-clique.js'),
-  mergeCycle = require('./merge-cycle.js'),
-  mergePath = require('./merge-path.js'),
-  mergeStar = require('./merge-star.js'),
-  subGraph = require('./subgraph.js');
+    Graph = require('graphology'),
+    isGraph = require('./is-graph.js'),
+    isGraphConstructor = require('./is-graph-constructor.js'),
+    mergeClique = require('./merge-clique.js'),
+    mergeCycle = require('./merge-cycle.js'),
+    mergePath = require('./merge-path.js'),
+    mergeStar = require('./merge-star.js'),
+    subGraph = require('./subgraph.js');
 
 var UndirectedGraph = Graph.UndirectedGraph;
 
@@ -18,7 +18,7 @@ describe('graphology-utils', function() {
   describe('isGraph', function() {
     it('should correctly return whether the given value is a graphology instance.', function() {
       var graph = new Graph(),
-        multiDirectedGraph = new Graph(null, {multi: true, type: 'directed'});
+          multiDirectedGraph = new Graph(null, {multi: true, type: 'directed'});
 
       assert.strictEqual(isGraph(graph), true);
       assert.strictEqual(isGraph(multiDirectedGraph), true);
@@ -174,10 +174,24 @@ describe('graphology-utils', function() {
       graph.addUndirectedEdge('Laura', 'Laura');
       graph.addUndirectedEdge('Laura', 'Hubert');
 
-      subGraphResult = subGraph(graph, ['Martha', 'Laura', 'LonelyJohnny']);
+      var list_of_nodes = ['Martha', 'Laura', 'LonelyJohnny'];
+      var set_of_edges = new Set();
+      var expected_set_of_edges = new Set();
+
+      subGraphResult = subGraph(graph, list_of_nodes);
 
       assert.strictEqual(subGraphResult.order, 3);
       assert.strictEqual(subGraphResult.size, 4);
+      assert.deepEqual(new Set(subGraphResult.nodes()),new Set(list_of_nodes));
+      subGraphResult.forEachEdge(function (edge, attributes, source, target) {
+        if (subGraphResult.undirected(edge)) {
+          set_of_edges.add(source + "--" + target);
+        }
+        else{
+        set_of_edges.add(source + "->" + target);
+        }
+      });
+      assert.deepEqual(set_of_edges, new Set(["Laura--Laura","Laura--Laura","Laura->Martha","Laura--Martha"]));
     });
     it('should return an empty graph if the list of nodes is empty', function() {
       var graph = new Graph();
