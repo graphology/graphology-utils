@@ -3,23 +3,22 @@
  * ============================
  */
 var assert = require('assert'),
-    Graph = require('graphology'),
-    isGraph = require('./is-graph.js'),
-    isGraphConstructor = require('./is-graph-constructor.js'),
-    mergeClique = require('./merge-clique.js'),
-    mergeCycle = require('./merge-cycle.js'),
-    mergePath = require('./merge-path.js'),
-    mergeStar = require('./merge-star.js');
+  Graph = require('graphology'),
+  isGraph = require('./is-graph.js'),
+  isGraphConstructor = require('./is-graph-constructor.js'),
+  mergeClique = require('./merge-clique.js'),
+  mergeCycle = require('./merge-cycle.js'),
+  mergePath = require('./merge-path.js'),
+  mergeStar = require('./merge-star.js'),
+  subGraph = require('./subgraph.js');
 
 var UndirectedGraph = Graph.UndirectedGraph;
 
 describe('graphology-utils', function() {
-
   describe('isGraph', function() {
-
     it('should correctly return whether the given value is a graphology instance.', function() {
       var graph = new Graph(),
-          multiDirectedGraph = new Graph(null, {multi: true, type: 'directed'});
+        multiDirectedGraph = new Graph(null, {multi: true, type: 'directed'});
 
       assert.strictEqual(isGraph(graph), true);
       assert.strictEqual(isGraph(multiDirectedGraph), true);
@@ -45,11 +44,9 @@ describe('graphology-utils', function() {
         assert.strictEqual(isGraph(value), false);
       });
     });
-
   });
 
   describe('isGraphConstructor', function() {
-
     it('should correctly return whether the given value is a graphology constructor.', function() {
       assert.strictEqual(isGraphConstructor(Graph), true);
       assert.strictEqual(isGraphConstructor(UndirectedGraph), true);
@@ -80,7 +77,6 @@ describe('graphology-utils', function() {
   });
 
   describe('mergeClique', function() {
-
     it('should correctly add the given clique to the graph.', function() {
       var graph = new Graph();
 
@@ -109,7 +105,6 @@ describe('graphology-utils', function() {
   });
 
   describe('mergeCycle', function() {
-
     it('should correctly add the given path to the graph.', function() {
       var graph = new Graph();
 
@@ -122,18 +117,11 @@ describe('graphology-utils', function() {
         return graph.extremities(edge);
       });
 
-      assert.deepEqual(adj, [
-        [1, 2],
-        [2, 3],
-        [3, 4],
-        [4, 5],
-        [5, 1]
-      ]);
+      assert.deepEqual(adj, [[1, 2], [2, 3], [3, 4], [4, 5], [5, 1]]);
     });
   });
 
   describe('mergePath', function() {
-
     it('should correctly add the given path to the graph.', function() {
       var graph = new Graph();
 
@@ -146,17 +134,11 @@ describe('graphology-utils', function() {
         return graph.extremities(edge);
       });
 
-      assert.deepEqual(adj, [
-        [1, 2],
-        [2, 3],
-        [3, 4],
-        [4, 5]
-      ]);
+      assert.deepEqual(adj, [[1, 2], [2, 3], [3, 4], [4, 5]]);
     });
   });
 
   describe('mergeStar', function() {
-
     it('should correctly add the given star to the graph.', function() {
       var graph = new Graph();
 
@@ -169,12 +151,44 @@ describe('graphology-utils', function() {
         return graph.extremities(edge);
       });
 
-      assert.deepEqual(adj, [
-        [1, 2],
-        [1, 3],
-        [1, 4],
-        [1, 5]
-      ]);
+      assert.deepEqual(adj, [[1, 2], [1, 3], [1, 4], [1, 5]]);
+    });
+  });
+
+  describe('subGraph', function() {
+    it('should correctly return the subgraph composed of the nodes passed in parameters', function() {
+      var graph = new Graph({multi: true});
+
+      graph.addNode('John');
+      graph.addNode('Martha');
+      graph.addNode('Hubert');
+      graph.addNode('Laura');
+      graph.addNode('LonelyJohnny');
+      graph.addEdge('John', 'Martha');
+      graph.addEdge('John', 'Laura');
+      graph.addEdge('Martha', 'Hubert');
+      graph.addEdge('Laura', 'John');
+      graph.addEdge('Laura', 'Martha');
+      graph.addUndirectedEdge('Laura', 'Martha');
+      graph.addUndirectedEdge('Laura', 'Laura');
+      graph.addUndirectedEdge('Laura', 'Laura');
+      graph.addUndirectedEdge('Laura', 'Hubert');
+
+      subGraphResult = subGraph(graph, ['Martha', 'Laura', 'LonelyJohnny']);
+
+      assert.strictEqual(subGraphResult.order, 3);
+      assert.strictEqual(subGraphResult.size, 4);
+    });
+    it('should return an empty graph if the list of nodes is empty', function() {
+      var graph = new Graph();
+
+      graph.addNode('John');
+      graph.addNode('Martha');
+      graph.addEdge('John', 'Martha');
+
+      subGraphResult = subGraph(graph, []);
+
+      assert.strictEqual(subGraphResult.order, 0);
     });
   });
 });

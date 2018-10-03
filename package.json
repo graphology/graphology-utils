@@ -10,12 +10,13 @@
     "merge-clique.js",
     "merge-cycle.js",
     "merge-path.js",
-    "merge-star.js"
+    "merge-star.js",
+    "subgraph.js"
   ],
   "scripts": {
     "lint": "eslint **/*.js",
     "prepublish": "npm run lint && npm test",
-    "test": "mocha test.js"
+    "test": "mocha 'test.js' "
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,9 @@
     "mocha": "^5.2.0"
   },
   "eslintConfig": {
-    "extends": "@yomguithereal/eslint-config"
+    "extends": "@yomguithereal/eslint-config",
+    "globals": {
+      "Set": true
+    }
   }
 }
