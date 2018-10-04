@@ -27,10 +27,16 @@
     "graphology",
     "utils"
   ],
-  "author": {
-    "name": "Guillaume Plique",
-    "url": "http://github.com/Yomguithereal"
-  },
+  "contributors": [
+    {
+      "name": "Guillaume Plique",
+      "url": "http://github.com/Yomguithereal"
+    },
+    {
+      "name": "Jules Farjas",
+      "url": "http://github.com/farjasju"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/graphology/graphology-utils/issues"
