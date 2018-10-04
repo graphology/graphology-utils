@@ -34,27 +34,15 @@ module.exports = function subGraph(graph, nodes) {
     if (!graph.hasNode(node)) throw new Error('Node ' + node + ' is not present in the graph.');
     if (!subGraphResult.hasNode(node)) {
       // and is not already present in the subgraph
-      subGraphResult.addNode(node);
-      subGraphResult.replaceNodeAttributes(
-        node,
-        graph.getNodeAttributes(node)
-      );
+      subGraphResult.addNode(node,graph.getNodeAttributes(node));
     }
     graph.forEachOutEdge(node, function(edge, attributes, source, target) {
       if (nodesSet.has(target) && nodesSet.has(source)) {
-        if (!subGraphResult.nodes().includes(target)) {
-          subGraphResult.addNode(target);
-          subGraphResult.replaceNodeAttributes(
-            target,
-            graph.getNodeAttributes(target)
-          );
+        if (!subGraphResult.hasNode(target)) {
+          subGraphResult.addNode(target,graph.getNodeAttributes(target));
         }
-        if (!subGraphResult.nodes().includes(source)) {
-          subGraphResult.addNode(source);
-          subGraphResult.replaceNodeAttributes(
-            source,
-            graph.getNodeAttributes(source)
-          );
+        if (!subGraphResult.hasNode(source)) {
+          subGraphResult.addNode(source,graph.getNodeAttributes(source));
         }
         subGraphResult.importEdge(graph.exportEdge(edge));
       }
@@ -66,19 +54,11 @@ module.exports = function subGraph(graph, nodes) {
       target
     ) {
       if (nodesSet.has(target) && nodesSet.has(source)) {
-        if (!subGraphResult.nodes().includes(target)) {
-          subGraphResult.addNode(target);
-          subGraphResult.replaceNodeAttributes(
-            target,
-            graph.getNodeAttributes(target)
-          );
+        if (!subGraphResult.hasNode(target)) {
+          subGraphResult.addNode(target,graph.getNodeAttributes(target));
         }
-        if (!subGraphResult.nodes().includes(source)) {
-          subGraphResult.addNode(source);
-          subGraphResult.replaceNodeAttributes(
-            source,
-            graph.getNodeAttributes(source)
-          );
+        if (!subGraphResult.hasNode(source)) {
+          subGraphResult.addNode(source, graph.getNodeAttributes(source));
         }
 
         if (source === target) {
