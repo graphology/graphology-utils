@@ -20,47 +20,36 @@ module.exports = function subGraph(graph, nodes) {
     nodesSet = new Set(nodes);
     if (nodes.length === 0) return subGraphResult;
   }
- else if (nodes instanceof Set) {
+  else if (nodes instanceof Set) {
     nodesSet = nodes;
     if (nodes.size === 0) return subGraphResult;
   }
- else {
+  else {
     throw new Error('The argument "nodes" is neither an array nor a set.');
   }
 
   var insertedSelfloops = new Set(); // Useful to check if a selfloop has already been inserted or not
 
-  nodesSet.forEach(function(node) { // For each node in the node list
+  nodesSet.forEach(function(node) { // Nodes addition
     if (!graph.hasNode(node)) throw new Error('Node ' + node + ' is not present in the graph.');
     if (!subGraphResult.hasNode(node)) {
-      // and is not already present in the subgraph
       subGraphResult.addNode(node, graph.getNodeAttributes(node));
     }
+  });
+
+  nodesSet.forEach(function(node) { // Edges addition
     graph.forEachOutEdge(node, function(edge, attributes, source, target) {
-      if (nodesSet.has(target) && nodesSet.has(source)) {
-        if (!subGraphResult.hasNode(target)) {
-          subGraphResult.addNode(target, graph.getNodeAttributes(target));
-        }
-        if (!subGraphResult.hasNode(source)) {
-          subGraphResult.addNode(source, graph.getNodeAttributes(source));
-        }
+      if (nodesSet.has(target)) {
         subGraphResult.importEdge(graph.exportEdge(edge));
       }
     });
-    graph.forEachUndirectedEdge(node, function(
-      edge,
-      attributes,
-      source,
-      target
-    ) {
-      if (nodesSet.has(target) && nodesSet.has(source)) {
-        if (!subGraphResult.hasNode(target)) {
-          subGraphResult.addNode(target, graph.getNodeAttributes(target));
-        }
-        if (!subGraphResult.hasNode(source)) {
-          subGraphResult.addNode(source, graph.getNodeAttributes(source));
-        }
-
+    graph.forEachUndirectedEdge(node, function(edge, attributes, source, target) {
+      if (source !== node) {
+        var tmp = source;
+        source = target;
+        target = tmp;
+      }
+      if (nodesSet.has(target)) {
         if (source === target) {
           if (!insertedSelfloops.has(edge)) {
             subGraphResult.importEdge(graph.exportEdge(edge));
@@ -68,15 +57,8 @@ module.exports = function subGraph(graph, nodes) {
           }
         }
         else {
-          if (source !== node) {
-            var tmp = source;
-            source = target;
-            target = tmp;
-          }
-
           if (source > target) {
             subGraphResult.importEdge(graph.exportEdge(edge));
-            //console.log("           added : ", source, "--", target);
           }
         }
       }
