@@ -17,6 +17,7 @@ npm install graphology-utils
 * [#.mergeCycle](#mergecycle)
 * [#.mergePath](#mergepath)
 * [#.mergeStar](#mergestar)
+* [#.subGraph](#subgraph)
 
 ### #.isGraph
 
