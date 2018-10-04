@@ -174,24 +174,23 @@ describe('graphology-utils', function() {
       graph.addUndirectedEdge('Laura', 'Laura');
       graph.addUndirectedEdge('Laura', 'Hubert');
 
-      var list_of_nodes = ['Martha', 'Laura', 'LonelyJohnny'];
-      var set_of_edges = new Set();
-      var expected_set_of_edges = new Set();
+      var listOfNodes = ['Martha', 'Laura', 'LonelyJohnny'];
+      var setOfEdges = new Set();
 
-      subGraphResult = subGraph(graph, list_of_nodes);
+      var subGraphResult = subGraph(graph, listOfNodes);
 
       assert.strictEqual(subGraphResult.order, 3);
       assert.strictEqual(subGraphResult.size, 4);
-      assert.deepEqual(new Set(subGraphResult.nodes()),new Set(list_of_nodes));
+      assert.deepEqual(new Set(subGraphResult.nodes()), new Set(listOfNodes));
       subGraphResult.forEachEdge(function (edge, attributes, source, target) {
         if (subGraphResult.undirected(edge)) {
-          set_of_edges.add(source + "--" + target);
+          setOfEdges.add(source + '--' + target);
         }
-        else{
-        set_of_edges.add(source + "->" + target);
+        else {
+        setOfEdges.add(source + '->' + target);
         }
       });
-      assert.deepEqual(set_of_edges, new Set(["Laura--Laura","Laura--Laura","Laura->Martha","Laura--Martha"]));
+      assert.deepEqual(setOfEdges, new Set(['Laura--Laura', 'Laura--Laura', 'Laura->Martha', 'Laura--Martha']));
     });
     it('should return an empty graph if the list of nodes is empty', function() {
       var graph = new Graph();
@@ -200,7 +199,7 @@ describe('graphology-utils', function() {
       graph.addNode('Martha');
       graph.addEdge('John', 'Martha');
 
-      subGraphResult = subGraph(graph, []);
+      var subGraphResult = subGraph(graph, []);
 
       assert.strictEqual(subGraphResult.order, 0);
     });

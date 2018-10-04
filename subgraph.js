@@ -34,15 +34,15 @@ module.exports = function subGraph(graph, nodes) {
     if (!graph.hasNode(node)) throw new Error('Node ' + node + ' is not present in the graph.');
     if (!subGraphResult.hasNode(node)) {
       // and is not already present in the subgraph
-      subGraphResult.addNode(node,graph.getNodeAttributes(node));
+      subGraphResult.addNode(node, graph.getNodeAttributes(node));
     }
     graph.forEachOutEdge(node, function(edge, attributes, source, target) {
       if (nodesSet.has(target) && nodesSet.has(source)) {
         if (!subGraphResult.hasNode(target)) {
-          subGraphResult.addNode(target,graph.getNodeAttributes(target));
+          subGraphResult.addNode(target, graph.getNodeAttributes(target));
         }
         if (!subGraphResult.hasNode(source)) {
-          subGraphResult.addNode(source,graph.getNodeAttributes(source));
+          subGraphResult.addNode(source, graph.getNodeAttributes(source));
         }
         subGraphResult.importEdge(graph.exportEdge(edge));
       }
@@ -55,7 +55,7 @@ module.exports = function subGraph(graph, nodes) {
     ) {
       if (nodesSet.has(target) && nodesSet.has(source)) {
         if (!subGraphResult.hasNode(target)) {
-          subGraphResult.addNode(target,graph.getNodeAttributes(target));
+          subGraphResult.addNode(target, graph.getNodeAttributes(target));
         }
         if (!subGraphResult.hasNode(source)) {
           subGraphResult.addNode(source, graph.getNodeAttributes(source));
