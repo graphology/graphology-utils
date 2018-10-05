@@ -18,15 +18,15 @@ module.exports = function subGraph(graph, nodes) {
 
   if (Array.isArray(nodes)) {
     nodesSet = new Set(nodes);
-    if (nodes.length === 0) return subGraphResult;
   }
   else if (nodes instanceof Set) {
     nodesSet = nodes;
-    if (nodes.size === 0) return subGraphResult;
   }
   else {
     throw new Error('The argument "nodes" is neither an array nor a set.');
   }
+
+  if (nodesSet.size === 0) return subGraphResult;
 
   var insertedSelfloops = new Set(); // Useful to check if a selfloop has already been inserted or not
 
