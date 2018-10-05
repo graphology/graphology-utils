@@ -60,7 +60,7 @@ module.exports = function subGraph(graph, nodes) {
           subGraphResult.importEdge(graph.exportEdge(edge));
           insertedSelfloops.add(edge);
         }
- else if (source > target) {
+        else if (source > target) {
           subGraphResult.importEdge(graph.exportEdge(edge));
         }
       }
