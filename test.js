@@ -192,6 +192,7 @@ describe('graphology-utils', function() {
       });
       assert.deepEqual(setOfEdges, new Set(['Laura--Laura', 'Laura--Laura', 'Laura->Martha', 'Laura--Martha']));
     });
+
     it('should return an empty graph if the list of nodes is empty', function() {
       var graph = new Graph();
 
@@ -203,6 +204,7 @@ describe('graphology-utils', function() {
 
       assert.strictEqual(subGraphResult.order, 0);
     });
+
     it('should raise an error if some nodes from the list are not in the graph', function() {
       var graph = new Graph();
 

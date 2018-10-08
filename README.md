@@ -2,7 +2,7 @@
 
 # Graphology Utils
 
-Miscellaneous utils to be used with [`graphology`](https://graphology.github.io).
+Miscellaneous utility functions to be used with [`graphology`](https://graphology.github.io).
 
 ## Installation
 
@@ -156,7 +156,7 @@ graph.addEdge('Dale', 'Norma');
 graph.addEdge('Shelly', 'Laura');
 graph.addUndirectedEdge('Norma', 'Shelly');
 
-subGraphResult = subGraph(graph, ['Dale','Laura']);
+subGraphResult = subGraph(graph, ['Dale', 'Laura']);
 subGraphResult.nodes();
 >>> [ 'Dale', 'Laura' ]
 subGraphResult.forEachEdge(
@@ -169,5 +169,5 @@ subGraphResult.forEachEdge(
 *Arguments*
 
 * **graph** *Graph*: source graph.
-* **nodes** *array*: array of nodes representing the subgraph to return.
+* **nodes** *array|Set*: the subgraph's array or set of nodes.
 
