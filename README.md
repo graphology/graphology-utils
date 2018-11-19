@@ -169,5 +169,5 @@ subGraphResult.forEachEdge(
 *Arguments*
 
 * **graph** *Graph*: source graph.
-* **nodes** *array*: array of nodes representing the subgraph to return.
+* **nodes** *array, set or function*: nodes representing the subgraph to return.
 

@@ -203,6 +203,20 @@ describe('graphology-utils', function() {
 
       assert.strictEqual(subGraphResult.order, 0);
     });
+    it('should return correctly filtered nodes if the nodes argument is a function', function() {
+      var graph = new Graph();
+
+      graph.addNode('John');
+      graph.addNode('Martha');
+      graph.addEdge('John', 'Martha');
+      graph.addNode('MargaretLanterman')
+      graph.addNode('BenjaminHorne')
+      graph.addEdge('BenjaminHorne', 'MargaretLanterman');
+
+      var subGraphResult = subGraph(graph, (key, attrs) => key.length > 6);
+
+      assert.deepEqual(new Set(subGraphResult.nodes()), new Set(['BenjaminHorne', 'MargaretLanterman']));
+    });
     it('should raise an error if some nodes from the list are not in the graph', function() {
       var graph = new Graph();
 

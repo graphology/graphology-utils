@@ -9,7 +9,7 @@
  * Returning the subgraph composed of the nodes passed as parameters.
  *
  * @param  {Graph} graph - Graph containing the subgraph.
- * @param  {array} nodes - Array or set of the nodes representing the subgraph to return.
+ * @param  {array} nodes - Array, set or function defining the nodes wanted in the subgraph.
  */
 
 module.exports = function subGraph(graph, nodes) {
@@ -19,11 +19,16 @@ module.exports = function subGraph(graph, nodes) {
   if (Array.isArray(nodes)) {
     nodesSet = new Set(nodes);
   }
- else if (nodes instanceof Set) {
+  else if (nodes instanceof Set) {
     nodesSet = nodes;
   }
- else {
-    throw new Error('The argument "nodes" is neither an array nor a set.');
+  else if (typeof nodes === 'function') {
+    nodesSet = new Set(graph.nodes().filter(nodes))
+  }
+  else {
+    throw new Error(
+      'The argument "nodes" is neither an array, nor a set, nor a function.'
+    );
   }
 
   if (nodesSet.size === 0) return subGraphResult;
