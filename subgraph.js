@@ -1,6 +1,6 @@
 /**
- * Graphology subGraph
- * ===================
+ * Graphology Sub Graph
+ * =====================
  *
  * Function returning the subgraph composed of the nodes passed as parameters.
  */
@@ -38,7 +38,7 @@ module.exports = function subGraph(graph, nodes) {
   nodesSet.forEach(function(node) {
     // Nodes addition
     if (!graph.hasNode(node))
-      throw new Error('Node ' + node + ' is not present in the graph.');
+      throw new Error('graphology-utils/subgraph: the "' + node + '" node is not present in the graph.');
     subGraphResult.addNode(node, graph.getNodeAttributes(node));
   });
 
