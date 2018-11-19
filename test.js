@@ -209,11 +209,15 @@ describe('graphology-utils', function() {
       graph.addNode('John');
       graph.addNode('Martha');
       graph.addEdge('John', 'Martha');
-      graph.addNode('MargaretLanterman')
-      graph.addNode('BenjaminHorne')
+      graph.addNode('MargaretLanterman');
+      graph.addNode('BenjaminHorne');
       graph.addEdge('BenjaminHorne', 'MargaretLanterman');
 
-      var subGraphResult = subGraph(graph, (key, attrs) => key.length > 6);
+      function isStringLong(string) {
+        return (string.length > 6);
+      }
+
+      var subGraphResult = subGraph(graph, isStringLong);
 
       assert.deepEqual(new Set(subGraphResult.nodes()), new Set(['BenjaminHorne', 'MargaretLanterman']));
     });
