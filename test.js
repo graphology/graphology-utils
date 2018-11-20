@@ -192,7 +192,6 @@ describe('graphology-utils', function() {
       });
       assert.deepEqual(setOfEdges, new Set(['Laura--Laura', 'Laura--Laura', 'Laura->Martha', 'Laura--Martha']));
     });
-
     it('should return an empty graph if the list of nodes is empty', function() {
       var graph = new Graph();
 
@@ -204,7 +203,24 @@ describe('graphology-utils', function() {
 
       assert.strictEqual(subGraphResult.order, 0);
     });
+    it('should return correctly filtered nodes if the nodes argument is a function', function() {
+      var graph = new Graph();
 
+      graph.addNode('John');
+      graph.addNode('Martha');
+      graph.addEdge('John', 'Martha');
+      graph.addNode('MargaretLanterman');
+      graph.addNode('BenjaminHorne');
+      graph.addEdge('BenjaminHorne', 'MargaretLanterman');
+
+      function isStringLong(string) {
+        return (string.length > 6);
+      }
+
+      var subGraphResult = subGraph(graph, isStringLong);
+
+      assert.deepEqual(new Set(subGraphResult.nodes()), new Set(['BenjaminHorne', 'MargaretLanterman']));
+    });
     it('should raise an error if some nodes from the list are not in the graph', function() {
       var graph = new Graph();
 

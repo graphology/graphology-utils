@@ -9,9 +9,9 @@
  * Returning the subgraph composed of the nodes passed as parameters.
  *
  * @param  {Graph} graph - Graph containing the subgraph.
- * @param  {array} nodes - Array or set of the nodes to keep.
- * @return {Graph}
+ * @param  {array} nodes - Array, set or function defining the nodes wanted in the subgraph.
  */
+
 module.exports = function subGraph(graph, nodes) {
   var nodesSet;
   var subGraphResult = graph.emptyCopy();
@@ -22,12 +22,21 @@ module.exports = function subGraph(graph, nodes) {
   else if (nodes instanceof Set) {
     nodesSet = nodes;
   }
+  else if (typeof nodes === 'function') {
+    nodesSet = new Set();
+    graph.forEachNode(function(key, attrs) {
+      if (nodes(key, attrs)) {
+        nodesSet.add(key);
+      }
+    });
+  }
   else {
-    throw new Error('graphology-utils/subgraph: given "nodes" is neither an array nor a set.');
+    throw new Error(
+      'The argument "nodes" is neither an array, nor a set, nor a function.'
+    );
   }
 
-  if (nodesSet.size === 0)
-    return subGraphResult;
+  if (nodesSet.size === 0) return subGraphResult;
 
   var insertedSelfloops = new Set(); // Useful to check if a selfloop has already been inserted or not
 
