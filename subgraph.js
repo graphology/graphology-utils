@@ -23,7 +23,12 @@ module.exports = function subGraph(graph, nodes) {
     nodesSet = nodes;
   }
   else if (typeof nodes === 'function') {
-    nodesSet = new Set(graph.nodes().filter(nodes));
+    nodesSet = new Set();
+    graph.forEachNode(function(key, attrs) {
+      if (nodes(key, attrs)) {
+        nodesSet.add(key);
+      }
+    });
   }
   else {
     throw new Error(
