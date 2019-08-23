@@ -14,7 +14,7 @@
     "subgraph.js"
   ],
   "scripts": {
-    "lint": "eslint **/*.js",
+    "lint": "eslint '**/*.js'",
     "prepublish": "npm run lint && npm test",
     "test": "mocha test.js"
   },
