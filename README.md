@@ -71,7 +71,7 @@ isGraphConstructor(new Graph());
 
 ### #.mergeCycle
 
-Function adding a star to the given graph.
+Function adding a cycle to the given graph.
 
 ```js
 import Graph from 'graphology';
