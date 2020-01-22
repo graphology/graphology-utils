@@ -46,7 +46,7 @@
     "@yomguithereal/eslint-config": "^4.0.0",
     "eslint": "^6.7.2",
     "graphology": "^0.14.1",
-    "mocha": "^6.2.2"
+    "mocha": "^7.0.0"
   },
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config",
