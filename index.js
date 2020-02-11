@@ -4,6 +4,7 @@
  *
  * Library endpoint.
  */
+exports.inferType = require('./infer-type.js');
 exports.isGraph = require('./is-graph.js');
 exports.isGraphConstructor = require('./is-graph-constructor.js');
 exports.mergeClique = require('./merge-clique.js');

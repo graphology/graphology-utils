@@ -1,3 +1,4 @@
+export {default as inferType} from './infer-type';
 export {default as isGraph} from './is-graph';
 export {default as isGraphConstructor} from './is-graph-constructor';
 export {default as mergeClique} from './merge-clique';

@@ -12,6 +12,7 @@ npm install graphology-utils
 
 ## Usage
 
+* [#.inferType](#infertype)
 * [#.isGraph](#isgraph)
 * [#.isGraphConstructor](#isgraphconstructor)
 * [#.mergeClique](#mergeclique)
@@ -19,6 +20,23 @@ npm install graphology-utils
 * [#.mergePath](#mergepath)
 * [#.mergeStar](#mergestar)
 * [#.subGraph](#subgraph)
+
+### #.inferType
+
+Function returning the inferred type of the given graph. This function is useful to check whether a given mixed graph is in fact a mere `directed` or `undirected` graph based on its actual edges.
+
+```js
+import Graph from 'graphology';
+import {inferType} from 'graphology-utils';
+// Alternatively, if you want to only load the relevant code:
+import inferType from 'graphology-utils/infer-type';
+
+const graph = new Graph();
+graph.addUndirectedEdge(1, 2);
+
+inferType(graph);
+>>> 'directed'
+```
 
 ### #.isGraph
 

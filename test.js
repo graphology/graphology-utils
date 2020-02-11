@@ -4,6 +4,7 @@
  */
 var assert = require('assert'),
     Graph = require('graphology'),
+    inferType = require('./infer-type.js'),
     isGraph = require('./is-graph.js'),
     isGraphConstructor = require('./is-graph-constructor.js'),
     mergeClique = require('./merge-clique.js'),
@@ -15,6 +16,38 @@ var assert = require('assert'),
 var UndirectedGraph = Graph.UndirectedGraph;
 
 describe('graphology-utils', function() {
+  describe('inferType', function() {
+    it('should correctly infer the type of the given graph.', function() {
+      var graph = new Graph({type: 'mixed'});
+      graph.mergeDirectedEdge(1, 2);
+
+      assert.strictEqual(inferType(graph), 'directed');
+
+      graph = new Graph({type: 'mixed'});
+      graph.mergeUndirectedEdge(1, 2);
+
+      assert.strictEqual(inferType(graph), 'undirected');
+
+      graph = new Graph({type: 'mixed'});
+      graph.mergeDirectedEdge(1, 2);
+      graph.mergeUndirectedEdge(3, 4);
+
+      assert.strictEqual(inferType(graph), 'mixed');
+
+      graph = new Graph({type: 'mixed'});
+
+      assert.strictEqual(inferType(graph), 'mixed');
+
+      graph = new Graph({type: 'directed'});
+
+      assert.strictEqual(inferType(graph), 'directed');
+
+      graph = new Graph({type: 'undirected'});
+
+      assert.strictEqual(inferType(graph), 'undirected');
+    });
+  });
+
   describe('isGraph', function() {
     it('should correctly return whether the given value is a graphology instance.', function() {
       var graph = new Graph(),
