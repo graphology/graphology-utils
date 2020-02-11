@@ -4,6 +4,7 @@
   "description": "Miscellaneous utils for graphology.",
   "main": "index.js",
   "files": [
+    "*.d.ts",
     "index.js",
     "is-graph.js",
     "is-graph-constructor.js",
@@ -53,5 +54,8 @@
     "globals": {
       "Set": true
     }
+  },
+  "dependencies": {
+    "graphology-types": "^0.15.1"
   }
 }

@@ -14,6 +14,7 @@ npm install graphology-utils
 
 * [#.isGraph](#isgraph)
 * [#.isGraphConstructor](#isgraphconstructor)
+* [#.mergeClique](#mergeclique)
 * [#.mergeCycle](#mergecycle)
 * [#.mergePath](#mergepath)
 * [#.mergeStar](#mergestar)
@@ -68,6 +69,24 @@ isGraphConstructor(new Graph());
 *Arguments*
 
 * **value** *any*: value to test.
+
+### #.mergeClique
+
+Function adding a clique to the given graph.
+
+```js
+import Graph from 'graphology';
+import {mergeClique} from 'graphology-utils';
+// Alternatively, if you want to only load the relevant code:
+import mergeClique from 'graphology-utils/merge-clique';
+
+const graph = new Graph();
+
+mergeClique(graph, [1, 2, 3]);
+graph.edges().map(e => graph.extremities(e));
+>>> [[1, 2], [1, 3], [2, 3]]
+```
+
 
 ### #.mergeCycle
 
