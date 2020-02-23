@@ -6,6 +6,7 @@
   "files": [
     "*.d.ts",
     "index.js",
+    "infer-type.js",
     "is-graph.js",
     "is-graph-constructor.js",
     "merge-clique.js",
