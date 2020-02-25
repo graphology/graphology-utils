@@ -14,7 +14,7 @@
 
 module.exports = function subGraph(graph, nodes) {
   var nodesSet;
-  var subGraphResult = graph.emptyCopy();
+  var subGraphResult = graph.nullCopy();
 
   if (Array.isArray(nodes)) {
     nodesSet = new Set(nodes);
