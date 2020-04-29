@@ -15,6 +15,7 @@
     "merge-star.js",
     "subgraph.js"
   ],
+  "types": "./index.d.ts",
   "scripts": {
     "lint": "eslint '**/*.js'",
     "prepublish": "npm run lint && npm test",
