@@ -47,7 +47,7 @@
   "homepage": "https://github.com/graphology/graphology-utils#readme",
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.0.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "graphology": "^0.17.1",
     "mocha": "^8.1.3"
   },
