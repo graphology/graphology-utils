@@ -113,7 +113,7 @@ describe('graphology-utils', function() {
     it('should correctly add the given clique to the graph.', function() {
       var graph = new Graph();
 
-      mergeClique(graph, [1, 2, 3, 4, 5]);
+      mergeClique(graph, ['1', '2', '3', '4', '5']);
 
       assert.strictEqual(graph.order, 5);
       assert.strictEqual(graph.size, 10);
@@ -122,17 +122,17 @@ describe('graphology-utils', function() {
         return graph.extremities(edge);
       });
 
-      assert.deepEqual(adj, [
-        [1, 2],
-        [1, 3],
-        [1, 4],
-        [1, 5],
-        [2, 3],
-        [2, 4],
-        [2, 5],
-        [3, 4],
-        [3, 5],
-        [4, 5]
+      assert.deepStrictEqual(adj, [
+        ['1', '2'],
+        ['1', '3'],
+        ['1', '4'],
+        ['1', '5'],
+        ['2', '3'],
+        ['2', '4'],
+        ['2', '5'],
+        ['3', '4'],
+        ['3', '5'],
+        ['4', '5']
       ]);
     });
   });
@@ -141,7 +141,7 @@ describe('graphology-utils', function() {
     it('should correctly add the given path to the graph.', function() {
       var graph = new Graph();
 
-      mergeCycle(graph, [1, 2, 3, 4, 5]);
+      mergeCycle(graph, ['1', '2', '3', '4', '5']);
 
       assert.strictEqual(graph.order, 5);
       assert.strictEqual(graph.size, 5);
@@ -150,7 +150,7 @@ describe('graphology-utils', function() {
         return graph.extremities(edge);
       });
 
-      assert.deepEqual(adj, [[1, 2], [2, 3], [3, 4], [4, 5], [5, 1]]);
+      assert.deepStrictEqual(adj, [['1', '2'], ['2', '3'], ['3', '4'], ['4', '5'], ['5', '1']]);
     });
   });
 
@@ -158,7 +158,7 @@ describe('graphology-utils', function() {
     it('should correctly add the given path to the graph.', function() {
       var graph = new Graph();
 
-      mergePath(graph, [1, 2, 3, 4, 5]);
+      mergePath(graph, ['1', '2', '3', '4', '5']);
 
       assert.strictEqual(graph.order, 5);
       assert.strictEqual(graph.size, 4);
@@ -167,7 +167,7 @@ describe('graphology-utils', function() {
         return graph.extremities(edge);
       });
 
-      assert.deepEqual(adj, [[1, 2], [2, 3], [3, 4], [4, 5]]);
+      assert.deepStrictEqual(adj, [['1', '2'], ['2', '3'], ['3', '4'], ['4', '5']]);
     });
   });
 
@@ -175,7 +175,7 @@ describe('graphology-utils', function() {
     it('should correctly add the given star to the graph.', function() {
       var graph = new Graph();
 
-      mergeStar(graph, [1, 2, 3, 4, 5]);
+      mergeStar(graph, ['1', '2', '3', '4', '5']);
 
       assert.strictEqual(graph.order, 5);
       assert.strictEqual(graph.size, 4);
@@ -184,7 +184,7 @@ describe('graphology-utils', function() {
         return graph.extremities(edge);
       });
 
-      assert.deepEqual(adj, [[1, 2], [1, 3], [1, 4], [1, 5]]);
+      assert.deepStrictEqual(adj, [['1', '2'], ['1', '3'], ['1', '4'], ['1', '5']]);
     });
   });
 
@@ -214,16 +214,16 @@ describe('graphology-utils', function() {
 
       assert.strictEqual(subGraphResult.order, 3);
       assert.strictEqual(subGraphResult.size, 4);
-      assert.deepEqual(new Set(subGraphResult.nodes()), new Set(listOfNodes));
+      assert.deepStrictEqual(new Set(subGraphResult.nodes()), new Set(listOfNodes));
       subGraphResult.forEachEdge(function (edge, attributes, source, target) {
-        if (subGraphResult.undirected(edge)) {
+        if (subGraphResult.isUndirected(edge)) {
           setOfEdges.add(source + '--' + target);
         }
         else {
         setOfEdges.add(source + '->' + target);
         }
       });
-      assert.deepEqual(setOfEdges, new Set(['Laura--Laura', 'Laura--Laura', 'Laura->Martha', 'Laura--Martha']));
+      assert.deepStrictEqual(setOfEdges, new Set(['Laura--Laura', 'Laura--Laura', 'Laura->Martha', 'Laura--Martha']));
     });
     it('should return an empty graph if the list of nodes is empty', function() {
       var graph = new Graph();
@@ -252,7 +252,7 @@ describe('graphology-utils', function() {
 
       var subGraphResult = subGraph(graph, isStringLong);
 
-      assert.deepEqual(new Set(subGraphResult.nodes()), new Set(['BenjaminHorne', 'MargaretLanterman']));
+      assert.deepStrictEqual(new Set(subGraphResult.nodes()), new Set(['BenjaminHorne', 'MargaretLanterman']));
     });
     it('should raise an error if some nodes from the list are not in the graph', function() {
       var graph = new Graph();
