@@ -5,6 +5,8 @@
   "main": "index.js",
   "files": [
     "*.d.ts",
+    "add-edge.js",
+    "add-node.js",
     "index.js",
     "infer-type.js",
     "is-graph.js",
@@ -12,8 +14,7 @@
     "merge-clique.js",
     "merge-cycle.js",
     "merge-path.js",
-    "merge-star.js",
-    "subgraph.js"
+    "merge-star.js"
   ],
   "types": "./index.d.ts",
   "scripts": {

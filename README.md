@@ -12,7 +12,7 @@ npm install graphology-utils
 
 ## Usage
 
-*Assertion*
+*Assertions*
 
 * [#.isGraph](#isgraph)
 * [#.isGraphConstructor](#isgraphconstructor)
@@ -27,10 +27,6 @@ npm install graphology-utils
 * [#.mergeCycle](#mergecycle)
 * [#.mergePath](#mergepath)
 * [#.mergeStar](#mergestar)
-
-*Misc*
-
-* [#.subGraph](#subgraph)
 
 ### #.inferType
 
@@ -182,40 +178,3 @@ graph.edges().map(e => graph.extremities(e));
 
 * **graph** *Graph*: target graph.
 * **star** *array*: array of nodes representing the star to add.
-
-### #.subGraph
-
-Function returning the subgraph corresponding to the given list of nodes.
-
-```js
-import Graph from 'graphology';
-import {subGraph} from 'graphology-utils';
-// Alternatively, if you want to only load the relevant code:
-import subGraph from 'graphology-utils/subgraph';
-
-const graph = new Graph();
-
-graph.addNode('Dale');
-graph.addNode('Laura');
-graph.addNode('Norma');
-graph.addNode('Shelly');
-graph.addEdge('Dale', 'Laura');
-graph.addEdge('Dale', 'Norma');
-graph.addEdge('Shelly', 'Laura');
-graph.addUndirectedEdge('Norma', 'Shelly');
-
-subGraphResult = subGraph(graph, ['Dale', 'Laura']);
-subGraphResult.nodes();
->>> [ 'Dale', 'Laura' ]
-subGraphResult.forEachEdge(
-  (edge, attributes, source, target) => {
-    console.log(`Edge from ${source} to ${target}`);
-});
->>> 'Edge from Dale to Laura'
-```
-
-*Arguments*
-
-* **graph** *Graph*: source graph.
-* **nodes** *array|Set|function*: the array, set or function defining the subgraph's nodes.
-

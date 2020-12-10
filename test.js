@@ -10,8 +10,7 @@ var assert = require('assert'),
     mergeClique = require('./merge-clique.js'),
     mergeCycle = require('./merge-cycle.js'),
     mergePath = require('./merge-path.js'),
-    mergeStar = require('./merge-star.js'),
-    subGraph = require('./subgraph.js');
+    mergeStar = require('./merge-star.js');
 
 var UndirectedGraph = Graph.UndirectedGraph;
 
@@ -185,85 +184,6 @@ describe('graphology-utils', function() {
       });
 
       assert.deepStrictEqual(adj, [['1', '2'], ['1', '3'], ['1', '4'], ['1', '5']]);
-    });
-  });
-
-  describe('subGraph', function() {
-    it('should correctly return the subgraph composed of the nodes passed in parameters', function() {
-      var graph = new Graph({multi: true});
-
-      graph.addNode('John');
-      graph.addNode('Martha');
-      graph.addNode('Hubert');
-      graph.addNode('Laura');
-      graph.addNode('LonelyJohnny');
-      graph.addEdge('John', 'Martha');
-      graph.addEdge('John', 'Laura');
-      graph.addEdge('Martha', 'Hubert');
-      graph.addEdge('Laura', 'John');
-      graph.addEdge('Laura', 'Martha');
-      graph.addUndirectedEdge('Laura', 'Martha');
-      graph.addUndirectedEdge('Laura', 'Laura');
-      graph.addUndirectedEdge('Laura', 'Laura');
-      graph.addUndirectedEdge('Laura', 'Hubert');
-
-      var listOfNodes = ['Martha', 'Laura', 'LonelyJohnny'];
-      var setOfEdges = new Set();
-
-      var subGraphResult = subGraph(graph, listOfNodes);
-
-      assert.strictEqual(subGraphResult.order, 3);
-      assert.strictEqual(subGraphResult.size, 4);
-      assert.deepStrictEqual(new Set(subGraphResult.nodes()), new Set(listOfNodes));
-      subGraphResult.forEachEdge(function (edge, attributes, source, target) {
-        if (subGraphResult.isUndirected(edge)) {
-          setOfEdges.add(source + '--' + target);
-        }
-        else {
-        setOfEdges.add(source + '->' + target);
-        }
-      });
-      assert.deepStrictEqual(setOfEdges, new Set(['Laura--Laura', 'Laura--Laura', 'Laura->Martha', 'Laura--Martha']));
-    });
-    it('should return an empty graph if the list of nodes is empty', function() {
-      var graph = new Graph();
-
-      graph.addNode('John');
-      graph.addNode('Martha');
-      graph.addEdge('John', 'Martha');
-
-      var subGraphResult = subGraph(graph, []);
-
-      assert.strictEqual(subGraphResult.order, 0);
-    });
-    it('should return correctly filtered nodes if the nodes argument is a function', function() {
-      var graph = new Graph();
-
-      graph.addNode('John');
-      graph.addNode('Martha');
-      graph.addEdge('John', 'Martha');
-      graph.addNode('MargaretLanterman');
-      graph.addNode('BenjaminHorne');
-      graph.addEdge('BenjaminHorne', 'MargaretLanterman');
-
-      function isStringLong(string) {
-        return (string.length > 6);
-      }
-
-      var subGraphResult = subGraph(graph, isStringLong);
-
-      assert.deepStrictEqual(new Set(subGraphResult.nodes()), new Set(['BenjaminHorne', 'MargaretLanterman']));
-    });
-    it('should raise an error if some nodes from the list are not in the graph', function() {
-      var graph = new Graph();
-
-      graph.addNode('John');
-      graph.addNode('Martha');
-      graph.addEdge('John', 'Martha');
-
-      assert.throws(function() {
-        subGraph(graph, ['Hubert']);
-      }, /not present/);
     });
   });
 });

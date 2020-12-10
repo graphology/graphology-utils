@@ -19,4 +19,3 @@ exports.mergeClique = require('./merge-clique.js');
 exports.mergeCycle = require('./merge-cycle.js');
 exports.mergePath = require('./merge-path.js');
 exports.mergeStar = require('./merge-star.js');
-exports.subGraph = require('./subgraph.js');
