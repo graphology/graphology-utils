@@ -12,13 +12,24 @@ npm install graphology-utils
 
 ## Usage
 
-* [#.inferType](#infertype)
+*Assertion*
+
 * [#.isGraph](#isgraph)
 * [#.isGraphConstructor](#isgraphconstructor)
+
+*Introspection*
+
+* [#.inferType](#infertype)
+
+*Typical edge patterns*
+
 * [#.mergeClique](#mergeclique)
 * [#.mergeCycle](#mergecycle)
 * [#.mergePath](#mergepath)
 * [#.mergeStar](#mergestar)
+
+*Misc*
+
 * [#.subGraph](#subgraph)
 
 ### #.inferType
