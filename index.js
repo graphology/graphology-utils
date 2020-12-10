@@ -5,11 +5,13 @@
  * Library endpoint.
  */
 var addEdgeModule = require('./add-edge');
+var addNodeModule = require('./add-node');
 
 exports.addEdge = addEdgeModule.addEdge;
 exports.copyEdge = addEdgeModule.copyEdge;
 exports.mergeEdge = addEdgeModule.mergeEdge;
 exports.updateEdge = addEdgeModule.updateEdge;
+exports.copyNode = addNodeModule.updateNode;
 exports.inferType = require('./infer-type.js');
 exports.isGraph = require('./is-graph.js');
 exports.isGraphConstructor = require('./is-graph-constructor.js');

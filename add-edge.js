@@ -1,8 +1,8 @@
 /**
- * Graphology addEdge
- * ===================
+ * Graphology Edge Adders
+ * =======================
  *
- * Generic addEdge function that can be used to avoid nasty repetitive
+ * Generic edge addition functions that can be used to avoid nasty repetitive
  * conditions.
  */
 
